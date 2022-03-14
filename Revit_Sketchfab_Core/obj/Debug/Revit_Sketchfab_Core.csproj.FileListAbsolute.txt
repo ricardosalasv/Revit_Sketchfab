@@ -1,0 +1,6 @@
+F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Core\bin\Debug\Revit_Sketchfab_Core.dll
+F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Core\bin\Debug\Revit_Sketchfab_Core.pdb
+F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Core\obj\Debug\Revit_Sketchfab_Core.csproj.CoreCompileInputs.cache
+F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Core\obj\Debug\Revit_Sketchfab_Core.dll
+F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Core\obj\Debug\Revit_Sketchfab_Core.pdb
+F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Core\obj\Debug\Revit_Sketchfab_Core.csproj.AssemblyReference.cache

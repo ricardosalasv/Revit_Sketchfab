@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ad677570-5edd-4bb6-a543-91aa4133b4cc": {
+      "ProjectGuid": "ad677570-5edd-4bb6-a543-91aa4133b4cc",
+      "DisplayName": "Revit_Sketchfab_UI",
+      "ColorIndex": 0
+    },
+    "14db1352-7874-4397-8606-27bf2210480a": {
+      "ProjectGuid": "14db1352-7874-4397-8606-27bf2210480a",
+      "DisplayName": "Revit_Sketchfab",
+      "ColorIndex": 1
+    },
+    "4c466c38-42b2-49a6-80da-859481a6711f": {
+      "ProjectGuid": "4c466c38-42b2-49a6-80da-859481a6711f",
+      "DisplayName": "Revit_Sketchfab_Core",
+      "ColorIndex": 2
+    },
+    "07e75bdf-3590-4a6b-8a9a-2f19e92b0a1d": {
+      "ProjectGuid": "07e75bdf-3590-4a6b-8a9a-2f19e92b0a1d",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 3
+    },
+    "1440c984-9bc7-48f3-84f8-f8ea1248d158": {
+      "ProjectGuid": "1440c984-9bc7-48f3-84f8-f8ea1248d158",
+      "DisplayName": "Revit_Sketchfab_Resources",
+      "ColorIndex": 4
+    },
+    "79fc7d02-5358-4392-8c82-37bc12d2cf51": {
+      "ProjectGuid": "79fc7d02-5358-4392-8c82-37bc12d2cf51",
+      "DisplayName": "Revit_Sketchfab_UI",
+      "ColorIndex": 5
+    }
+  },
+  "NextColorIndex": 6
+}

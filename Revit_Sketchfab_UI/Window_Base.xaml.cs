@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Revit_Sketchfab_UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Window_Base.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Window_Base : Window
     {
-        public MainWindow()
+        public Window_Base()
         {
             InitializeComponent();
         }

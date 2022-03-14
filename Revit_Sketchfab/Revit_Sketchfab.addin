@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Revit-Sketchfab Integration</Name>
+		<Assembly>Revit_Sketchfab.dll</Assembly>
+		<FullClassName>Revit_Sketchfab.ExtApp</FullClassName>
+		<AddInId>98C1CEC1-1ED7-444D-A00A-417A70C7B340</AddInId>
+		<Description>Set of tools integrating Revit 3D model manipulation and Sketchfab services</Description>
+		<VendorId>RS</VendorId>
+		<VendorDescription>ricardosalasv.com</VendorDescription>
+		<VisibilityMode>AlwaysVisible</VisibilityMode>
+	</AddIn>
+</RevitAddIns>
