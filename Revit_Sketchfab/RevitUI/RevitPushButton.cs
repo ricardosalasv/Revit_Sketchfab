@@ -1,5 +1,4 @@
 ﻿using Autodesk.Revit.UI;
-using Revit_Sketchfab_Core;
 using Revit_Sketchfab_Resources;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Revit_Sketchfab_UI.Revit
+namespace Revit_Sketchfab.RevitUI
 {
     /// <summary>
     /// Represents the Revit PushButton
@@ -25,7 +24,7 @@ namespace Revit_Sketchfab_UI.Revit
             var btnDataName = Guid.NewGuid().ToString();
 
             // Sets the button data
-            var btnData = new PushButtonData(btnDataName, dataModel.Label, CoreAssembly.GetAssemblyLocation(), dataModel.CommandNamespacePath)
+            var btnData = new PushButtonData(btnDataName, dataModel.Label, MainAssembly.GetAssemblyLocation(), dataModel.CommandNamespacePath)
             {
                 ToolTip = dataModel.Tooltip,
                 LargeImage = ResourceImage.GetIcon(dataModel.IconImageName),

@@ -1,6 +1,6 @@
 ﻿using Autodesk.Revit.UI;
-using Revit_Sketchfab_UI.Revit;
-using Revit_Sketchfab_UI.Revit.Commands.Entrypoints;
+using Revit_Sketchfab.Entrypoints;
+using Revit_Sketchfab.RevitUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

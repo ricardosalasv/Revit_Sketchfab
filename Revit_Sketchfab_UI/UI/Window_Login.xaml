@@ -1,0 +1,156 @@
+﻿<Window x:Class="Revit_Sketchfab_UI.UI.Window_Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Revit_Sketchfab_UI"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="Window_Login" Height="450" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/BaseDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/TextDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/TextBoxDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Window drop shadow -->
+    <Window.Effect>
+        <DropShadowEffect 
+                        ShadowDepth="10"
+                        Opacity="0.5"
+                        BlurRadius="15"/>
+    </Window.Effect>
+
+    <Border Style="{StaticResource out_border}"
+            Margin="0 0 30 30">
+
+        <!-- Main Layout -->
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Header clipping border -->
+            <Border 
+                Grid.Row="0"
+                CornerRadius="20 20 0 0"
+                x:Name="maskHeader"
+                />
+
+            <!-- Header drop shadow-->
+            <Border 
+                CornerRadius="20 20 0 0"
+                BorderBrush="Black"
+                BorderThickness="0">
+
+                <Border.Effect>
+                    <DropShadowEffect 
+                        Direction="270"
+                        RenderingBias="Quality"
+                        ShadowDepth="5"
+                        Opacity="0.5"
+                        BlurRadius="15"/>
+                </Border.Effect>
+            </Border>
+
+            <!-- Header -->
+            <Grid
+                Grid.Row="0"
+                Background="#1caad9"
+                >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=maskHeader}"/>
+                </Grid.OpacityMask>
+
+                <!-- Icon -->
+                <Image
+                    Source="../Revit_Sketchfab_Resources/sketchfab-logo.png"
+                    Grid.Column="0"
+                    Height="75"
+                    Width="75"/>
+
+                <!-- Title -->
+                <TextBlock Style="{StaticResource title_text}"
+                    Grid.Column="1"
+                    Text="LOGIN"/>
+
+            </Grid>
+
+            <!-- Body -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Margin="0 23 0 0" Text="Email Address"/>
+                        <TextBox/>
+
+                        <TextBlock Margin="0 23 0 0" Text="Password"/>
+                        <PasswordBox/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!-- Action Buttons clipping border-->
+            <Border 
+                Grid.Row="2"
+                CornerRadius="0 0 20 20"
+                x:Name="maskActionButtons"
+                />
+            
+            <!-- Action Buttons -->
+            <Grid
+                Grid.Row="2">
+
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=maskActionButtons}"/>
+                </Grid.OpacityMask>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button 
+                    Grid.Column="0"
+                    Style="{StaticResource action_button}"
+                    Content="EXIT"
+                    />
+
+                <Button 
+                    Grid.Column="1"
+                    Style="{StaticResource action_button}"
+                    Content="LOGIN"
+                    />
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>

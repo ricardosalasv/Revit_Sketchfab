@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Revit_Sketchfab_UI.Revit
+namespace Revit_Sketchfab.RevitUI
 {
     /// <summary>
     /// Represents the Revit PushButtonDataModel

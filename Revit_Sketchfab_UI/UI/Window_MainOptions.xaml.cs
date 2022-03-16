@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Revit_Sketchfab_UI
+namespace Revit_Sketchfab_UI.UI
 {
     /// <summary>
-    /// Interaction logic for Window_Base.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window_Base : Window
+    public partial class Window_MainOptions : Window
     {
-        public Window_Base()
+        public Window_MainOptions()
         {
             InitializeComponent();
         }

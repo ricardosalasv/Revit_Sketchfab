@@ -3,4 +3,3 @@ F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exp
 F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Resources\obj\Debug\Revit_Sketchfab_Resources.csproj.CoreCompileInputs.cache
 F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Resources\obj\Debug\Revit_Sketchfab_Resources.dll
 F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Resources\obj\Debug\Revit_Sketchfab_Resources.pdb
-F:\Ricardo Salas\Arquitectura\Programas\Autodesk\Revit\Scripts\NET\Sketchfab Exporter\Revit_Sketchfab\Revit_Sketchfab_Resources\obj\Debug\Revit_Sketchfab_Resources.csproj.AssemblyReference.cache
