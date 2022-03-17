@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-61357893434
+9-1229949670
 
-61525627101
-151892732338
-ResourceDictionaries\BaseDictionary.xaml;ResourceDictionaries\ButtonDictionary.xaml;ResourceDictionaries\TextBoxDictionary.xaml;ResourceDictionaries\TextDictionary.xaml;UI\Window_Login.xaml;UI\Window_MainOptions.xaml;
+9683295733
+17149539612
+ResourceDictionaries\BaseDictionary.xaml;ResourceDictionaries\ButtonDictionary.xaml;ResourceDictionaries\TextBoxDictionary.xaml;ResourceDictionaries\TextDictionary.xaml;UI\Window_Export.xaml;UI\Window_Library.xaml;UI\Window_Login.xaml;UI\Window_Menu.xaml;UI\Window_Viewer.xaml;
 
 False
 

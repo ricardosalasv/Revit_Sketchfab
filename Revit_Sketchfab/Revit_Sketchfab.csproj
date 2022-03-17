@@ -59,6 +59,7 @@
     <Compile Include="SetupUI.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Revit_Sketchfab.addin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

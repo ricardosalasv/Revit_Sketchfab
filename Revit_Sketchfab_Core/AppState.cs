@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autodesk.Revit.UI;
+using Revit_Sketchfab_Core.lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,7 +17,22 @@ namespace Revit_Sketchfab_Core
         public static bool IsUserLoggedIn { get; set; }
 
         // Initializes the http client pointing at the Sketchfab API
-        public static HttpClient client = new HttpClient();
+        public static SketchfabAPIConnection client = new SketchfabAPIConnection();
 
+        public static ExportConfig ExportConfig = new ExportConfig();
+
+        public static UIApplication CurrentUIApplication { get; set; }
+
+        public static void Initialize()
+        {
+            IsUserLoggedIn = false;
+            ExportConfig.selectedElements = false;
+        }
+
+    }
+
+    public class ExportConfig
+    {
+        public bool selectedElements { get; set; }
     }
 }

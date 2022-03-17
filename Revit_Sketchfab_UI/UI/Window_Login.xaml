@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Revit_Sketchfab_UI"
+        xmlns:local="clr-namespace:Revit_Sketchfab_UI.UI"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -110,10 +110,10 @@
 
                     <StackPanel Grid.Row="1">
                         <TextBlock Margin="0 23 0 0" Text="Email Address"/>
-                        <TextBox/>
+                        <TextBox x:Name="emailTextBox"/>
 
                         <TextBlock Margin="0 23 0 0" Text="Password"/>
-                        <PasswordBox/>
+                        <PasswordBox x:Name="passwordBox"/>
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -138,16 +138,20 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button 
+                <Button x:Name="exit_button"
                     Grid.Column="0"
                     Style="{StaticResource action_button}"
                     Content="EXIT"
+                        
+                    Click="exit_button_Click"
                     />
 
-                <Button 
+                <Button x:Name="login_button"
                     Grid.Column="1"
                     Style="{StaticResource action_button}"
                     Content="LOGIN"
+                    
+                    Click="login_button_Click"
                     />
             </Grid>
 

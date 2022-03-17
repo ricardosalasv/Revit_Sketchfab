@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using Revit_Sketchfab_Core;
 using Revit_Sketchfab_UI.lib;
 using Revit_Sketchfab_UI.UI;
 using System;
@@ -16,7 +17,16 @@ namespace Revit_Sketchfab.Entrypoints
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            CreateWindows.CreateLoginWindow();
+            AppState.CurrentUIApplication = commandData.Application;
+
+            if (AppState.IsUserLoggedIn)
+            {
+                CreateWindows.CreateMenuWindow();
+            }
+            else
+            {
+                CreateWindows.CreateLoginWindow();
+            }
 
             return Result.Succeeded;
         }

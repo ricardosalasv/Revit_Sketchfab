@@ -15,5 +15,12 @@ namespace Revit_Sketchfab_UI.lib
             windowLogin.Activate();
             windowLogin.Show();
         }
+
+        public static void CreateMenuWindow()
+        {
+            Window_Menu windowMenu = new Window_Menu();
+            windowMenu.Activate();
+            windowMenu.Show();
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Revit_Sketchfab
             SetupUI.Initialize(application);
 
             // Setting AppState
-            AppState.IsUserLoggedIn = false;
+            AppState.Initialize();
 
             return Result.Succeeded;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Revit_Sketchfab_Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,25 @@ namespace Revit_Sketchfab_UI.UI
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private async void login_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+            string email = emailTextBox.Text;
+            string password = passwordBox.Password;
+
+            AppState.IsUserLoggedIn = await AppState.client.Authenticate(email, password);
+
+            Window_Menu window_Menu = new Window_Menu();
+            window_Menu.Activate();
+            window_Menu.Show();
+        }
+
+        private void exit_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 
