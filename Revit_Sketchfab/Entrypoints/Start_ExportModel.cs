@@ -2,7 +2,6 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Revit_Sketchfab_Core;
-using Revit_Sketchfab_UI.lib;
 using Revit_Sketchfab_UI.UI;
 using System;
 using System.Collections.Generic;
@@ -19,13 +18,22 @@ namespace Revit_Sketchfab.Entrypoints
         {
             AppState.CurrentUIApplication = commandData.Application;
 
+            // Initializing all windows
+            Window_Login windowLogin = new Window_Login();
+            Window_Menu windowMenu = new Window_Menu();
+            Window_Export windowExport = new Window_Export();
+            Window_Library windowLibrary = new Window_Library();
+            Window_Viewer windowViewer = new Window_Viewer();
+
             if (AppState.IsUserLoggedIn)
             {
-                CreateWindows.CreateMenuWindow();
+                windowMenu.Activate();
+                windowMenu.Show();
             }
             else
             {
-                CreateWindows.CreateLoginWindow();
+                windowLogin.Activate();
+                windowLogin.Show();
             }
 
             return Result.Succeeded;

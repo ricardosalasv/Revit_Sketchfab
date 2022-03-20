@@ -1,42 +1,75 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using Autodesk.Revit.UI.Selection;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Revit_Sketchfab_Core.lib.Commands
 {
-    public class ExportModel : IExternalCommand
+    public class ExportModel
     {
 
-        public async Task<Result> Execute()
+        public async Task<bool> Execute()
         {
-            View activeView = AppState.CurrentUIApplication.ActiveUIDocument.ActiveView;
+            UIDocument uidoc = AppState.CurrentUIApplication.ActiveUIDocument;
 
-            Export(activeView);
+            await Export(uidoc);
 
-            return Result.Succeeded;
-
-        }
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            return Execute().Result;
+            return true;
         }
 
-        public void Export(View view, bool selected=false)
+        public async Task<bool> Export(UIDocument uidoc, bool selected=false)
         {
+            View view = uidoc.ActiveView;
+            if (!(view is View3D))
+            {
+                TaskDialog.Show("Error", "You must be in the 3D View you want to export elements from.");
+                return false;
+            }
+
             Document doc = view.Document;
+
+            Transaction tt = new Transaction(doc, "Adjust View Settings");
+            tt.Start();
+
+            // Setting base adjustments to the view for export
+            view.AreAnnotationCategoriesHidden = true;
+
+            foreach (ElementId id in GetCategoriesToHide())
+            {
+                view.SetCategoryHidden(id, true);
+            }
 
             if (selected)
             {
+                IList<Reference> selSet = uidoc.Selection.PickObjects(ObjectType.Element);
+
                 // Apply temporary isolation to the selected elements in the active view
+                IList<ElementId> selectedElementsIds = selSet.Select(x => doc.GetElement(x).Id).ToList();
+
+                view.IsolateElementsTemporary(selectedElementsIds);
             }
 
             ViewSet viewSet = new ViewSet();
             viewSet.Insert(view);
 
+            string zipfile = FBXExport(doc, viewSet);
+
+            // Returns the active view to its original state
+            tt.RollBack();
+
+            return true;
+        }
+
+        private string FBXExport(Document doc, ViewSet viewSet)
+        {
             FBXExportOptions options = new FBXExportOptions()
             {
                 LevelsOfDetailValue = 15,
@@ -45,10 +78,40 @@ namespace Revit_Sketchfab_Core.lib.Commands
                 WithoutBoundaryEdges = true,
             };
 
-            doc.Export("F:\\Ricardo Salas\\Arquitectura\\Programas\\Autodesk\\Revit\\Scripts\\NET\\Sketchfab Exporter\\Revit_Sketchfab\\",
-                "exportTest.fbx",
-                viewSet,
-                options);
+            try
+            {
+
+                string tempPath = Environment.GetEnvironmentVariable("TEMP");
+                DirectoryInfo dir = Directory.CreateDirectory(tempPath + "\\sketchfabExportDir");
+
+                string fileName = "sketchfabExport.fbx";
+                string exportDir = dir.FullName;
+                string zipPath = tempPath + "\\sketchfabExport.zip";
+                doc.Export(exportDir, fileName, viewSet, options);
+
+                ZipFile.CreateFromDirectory(exportDir, zipPath);
+
+                return zipPath;
+            }
+            catch (Exception ex)
+            {
+                string test = ex.Message;
+            }
+
+            return "";
+        }
+
+        private IList<ElementId> GetCategoriesToHide()
+        {
+            IList<BuiltInCategory> categories = new List<BuiltInCategory>()
+            {
+                BuiltInCategory.OST_Levels,
+                BuiltInCategory.OST_Grids
+            };
+
+            IList<ElementId> categoriesIds = categories.Select(x => new ElementId(x)).ToList();
+
+            return categoriesIds;
         }
     }
 }

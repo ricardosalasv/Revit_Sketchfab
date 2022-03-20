@@ -113,7 +113,7 @@
                 <Button x:Name="export_button"
                     Style="{StaticResource menu_button}"
                         
-                    Click="export_button_Click">
+                    Command="{Binding ExportButtonCommand}">
                     <StackPanel>
                         <Image Source="../Revit_Sketchfab_Resources/icon_export.png"/>
                         <TextBlock
@@ -131,7 +131,7 @@
                     Style="{StaticResource menu_button}" 
                     Grid.Column="2"
                         
-                        Click="library_button_Click">
+                    Command="{Binding LibraryButtonCommand}">
                     <StackPanel>
                         <Image Source="../Revit_Sketchfab_Resources/icon_browse.png"/>
                         <TextBlock

@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 9-1229949670
 
-10-1689893442
+9-1426466470
 17149539612
 ResourceDictionaries\BaseDictionary.xaml;ResourceDictionaries\ButtonDictionary.xaml;ResourceDictionaries\TextBoxDictionary.xaml;ResourceDictionaries\TextDictionary.xaml;UI\Window_Export.xaml;UI\Window_Library.xaml;UI\Window_Login.xaml;UI\Window_Menu.xaml;UI\Window_Viewer.xaml;
 
-True
+False
 

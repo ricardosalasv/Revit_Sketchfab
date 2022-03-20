@@ -24,8 +24,8 @@ namespace Revit_Sketchfab_UI.UI
         public Window_Login()
         {
             InitializeComponent();
-
             this.MouseDown += Window_MouseDown;
+            AppState.InitializedWPFWindows.Add(this);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -43,7 +43,7 @@ namespace Revit_Sketchfab_UI.UI
 
             AppState.IsUserLoggedIn = await AppState.client.Authenticate(email, password);
 
-            Window_Menu window_Menu = new Window_Menu();
+            Window_Menu window_Menu = AppState.GetWindow("Window_Menu") as Window_Menu;
             window_Menu.Activate();
             window_Menu.Show();
         }

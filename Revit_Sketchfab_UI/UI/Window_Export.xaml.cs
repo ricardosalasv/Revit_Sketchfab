@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Revit_Sketchfab_Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace Revit_Sketchfab_UI.UI
         public Window_Export()
         {
             InitializeComponent();
+            this.MouseDown += Window_MouseDown;
+            AppState.InitializedWPFWindows.Add(this);
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }
