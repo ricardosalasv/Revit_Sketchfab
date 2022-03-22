@@ -15,6 +15,13 @@ namespace Revit_Sketchfab_Core.lib.Commands
 {
     public class ExportModel
     {
+        private bool exportSel = false;
+        private string modelName { get; set; }
+        public ExportModel(bool exportSelected, string ModelName)
+        {
+            exportSel = exportSelected;
+            modelName = ModelName;
+        }
 
         public async Task<bool> Execute()
         {
@@ -25,7 +32,7 @@ namespace Revit_Sketchfab_Core.lib.Commands
             return true;
         }
 
-        public async Task<bool> Export(UIDocument uidoc, bool selected=false)
+        public async Task<bool> Export(UIDocument uidoc)
         {
             View view = uidoc.ActiveView;
             if (!(view is View3D))
@@ -47,28 +54,35 @@ namespace Revit_Sketchfab_Core.lib.Commands
                 view.SetCategoryHidden(id, true);
             }
 
-            if (selected)
+            if (exportSel)
             {
+                TaskDialog.Show("Info", "Please select the elements you want to export");
+
                 IList<Reference> selSet = uidoc.Selection.PickObjects(ObjectType.Element);
 
                 // Apply temporary isolation to the selected elements in the active view
                 IList<ElementId> selectedElementsIds = selSet.Select(x => doc.GetElement(x).Id).ToList();
 
                 view.IsolateElementsTemporary(selectedElementsIds);
+
+                view.ConvertTemporaryHideIsolateToPermanent();
             }
 
             ViewSet viewSet = new ViewSet();
             viewSet.Insert(view);
 
-            string zipfile = FBXExport(doc, viewSet);
+            string zipfile = FBXExport(doc, viewSet, modelName);
 
             // Returns the active view to its original state
             tt.RollBack();
 
+            // Starts uploading the model to Sketchfab
+            await AppState.client.UploadModel(zipfile, modelName);
+
             return true;
         }
 
-        private string FBXExport(Document doc, ViewSet viewSet)
+        private string FBXExport(Document doc, ViewSet viewSet, string modelName)
         {
             FBXExportOptions options = new FBXExportOptions()
             {
@@ -80,13 +94,12 @@ namespace Revit_Sketchfab_Core.lib.Commands
 
             try
             {
-
                 string tempPath = Environment.GetEnvironmentVariable("TEMP");
                 DirectoryInfo dir = Directory.CreateDirectory(tempPath + "\\sketchfabExportDir");
 
-                string fileName = "sketchfabExport.fbx";
+                string fileName = $"{modelName}.fbx";
                 string exportDir = dir.FullName;
-                string zipPath = tempPath + "\\sketchfabExport.zip";
+                string zipPath = tempPath + $"\\{modelName}.zip";
                 doc.Export(exportDir, fileName, viewSet, options);
 
                 ZipFile.CreateFromDirectory(exportDir, zipPath);

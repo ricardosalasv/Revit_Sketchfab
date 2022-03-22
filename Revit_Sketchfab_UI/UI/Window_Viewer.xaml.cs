@@ -24,6 +24,7 @@ namespace Revit_Sketchfab_UI.UI
         {
             InitializeComponent();
             this.MouseDown += Window_MouseDown;
+
             AppState.InitializedWPFWindows.Add(this);
         }
 
@@ -31,6 +32,13 @@ namespace Revit_Sketchfab_UI.UI
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            AppState.InitializedWPFWindows.Remove(this);
+
+            base.OnClosed(e);
         }
     }
 }

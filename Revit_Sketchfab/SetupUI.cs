@@ -44,7 +44,7 @@ namespace Revit_Sketchfab
                 Tooltip = "This command opens the Sketchfab Integration interface.",
                 IconImageName = "icon_export.png",
                 TooltipImageName = "icon_tooltip_export.png",
-                CommandNamespacePath = Start_ExportModel.GetPath()
+                CommandNamespacePath = Start_App.GetPath()
             };
 
             // Create PushButton from provided data model

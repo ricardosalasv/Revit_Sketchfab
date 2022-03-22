@@ -8,8 +8,207 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="Window_Export" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Window_Export" Height="600" Width="600">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/BaseDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/TextDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/TextBoxDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Window drop shadow -->
+    <Window.Effect>
+        <DropShadowEffect 
+                        ShadowDepth="10"
+                        Opacity="0.5"
+                        BlurRadius="15"/>
+    </Window.Effect>
+
+    <Border Style="{StaticResource out_border}"
+            Margin="0 0 30 30">
+
+        <!-- Main Layout -->
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header clipping border -->
+            <Border 
+                Grid.Row="0"
+                CornerRadius="20 20 0 0"
+                x:Name="maskHeader"
+                />
+
+            <!-- Header drop shadow-->
+            <Border 
+                CornerRadius="20 20 0 0"
+                BorderBrush="Black"
+                BorderThickness="0"
+                Panel.ZIndex="1"
+                >
+
+                <Border.Effect>
+                    <DropShadowEffect 
+                        Direction="270"
+                        RenderingBias="Quality"
+                        ShadowDepth="5"
+                        Opacity="0.5"
+                        BlurRadius="15"
+                        />
+                </Border.Effect>
+            </Border>
+
+            <!-- Header -->
+            <Grid
+                Grid.Row="0"
+                Background="#1caad9"
+                Panel.ZIndex="2"
+                >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=maskHeader}"/>
+                </Grid.OpacityMask>
+
+                <!-- Icon -->
+                <Image
+                    Source="../Revit_Sketchfab_Resources/sketchfab-logo.png"
+                    Grid.Column="0"
+                    Height="75"
+                    Width="75"/>
+
+                <!-- Title -->
+                <TextBlock Style="{StaticResource title_text}"
+                    Grid.Column="1"
+                    Text="EXPORT MODEL"/>
+
+                <Button x:Name="logout_button"
+                    Style="{StaticResource logout_button}"
+                    Grid.Column="2"
+                    Content="LOGOUT"
+                        
+                    Click="logout_button_Click"
+                    />
+
+            </Grid>
+
+            <!-- Body -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.01*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="textbox_modelName"
+                         Grid.ColumnSpan="3"
+                         BorderThickness="0"
+                         Height="50"
+                         
+                         Background="#CCC"
+                         
+                         Text="{Binding Path=ModelName, Mode=TwoWay}"
+                         TextAlignment="Center"
+                         FontSize="24"
+                         
+                         MaxLength="48"
+                         
+                         Padding="0 10 0 0"
+                    />
+
+                <Button x:Name="export_button"
+                        Grid.Row="2"
+                        Style="{StaticResource menu_button}"
+                        
+                        Command="{Binding ExportAllButtonCommand}"
+                        >
+                    <StackPanel>
+                        <Image Source="../Revit_Sketchfab_Resources/icon_exportAll.png"
+                               Height="230"/>
+                        <TextBlock
+                            Text="EXPORT ALL"
+                            TextAlignment="Center"
+                            Foreground="#333"/>
+                    </StackPanel>
+                </Button>
+
+                <Border Grid.Column="1"
+                        Grid.Row="2"
+                        BorderThickness="5"
+                        BorderBrush="#555555"/>
+
+                <Button x:Name="exportSel_button"
+                        Style="{StaticResource menu_button}" 
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        
+                        Command="{Binding ExportSelectedButtonCommand}"
+                        >
+                    <StackPanel>
+                        <Image Source="../Revit_Sketchfab_Resources/icon_exportSelection.png"
+                               Height="230"/>
+                        <TextBlock
+                            Text="EXPORT SELECTION"
+                            Width="200"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"
+                            Foreground="#333"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+
+            <!-- Action Buttons clipping border-->
+            <Border 
+                Grid.Row="2"
+                CornerRadius="0 0 20 20"
+                x:Name="maskActionButtons"
+                />
+
+            <!-- Action Buttons -->
+            <Grid
+                Grid.Row="2"
+                Background="#1caad9">
+
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=maskActionButtons}"/>
+                </Grid.OpacityMask>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="exit_button"
+                    Grid.Column="0"
+                    Style="{StaticResource action_button}"
+                    Content="EXIT"
+                        
+                    Click="exit_button_Click"
+                    />
+
+            </Grid>
+
+        </Grid>
+    </Border>
 </Window>

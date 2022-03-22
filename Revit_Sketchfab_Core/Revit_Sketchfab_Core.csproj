@@ -60,13 +60,14 @@
   <ItemGroup>
     <Compile Include="AppState.cs" />
     <Compile Include="CoreAssembly.cs" />
+    <Compile Include="lib\APIObjects\Sketchfab_Model.cs" />
     <Compile Include="lib\Commands\ExportModel.cs" />
     <Compile Include="lib\DataModels\SketchfabModel.cs" />
     <Compile Include="lib\ExternalEvents\AppExternalEvent.cs" />
     <Compile Include="lib\SketchfabAPIConnection.cs" />
     <Compile Include="lib\ViewModels\Base\BaseViewModel.cs" />
-    <Compile Include="lib\ViewModels\Base\RouteCommands.cs" />
-    <Compile Include="lib\ViewModels\MenuModelViewModel.cs" />
+    <Compile Include="lib\ViewModels\Base\RelayCommands.cs" />
+    <Compile Include="lib\ViewModels\ExportViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

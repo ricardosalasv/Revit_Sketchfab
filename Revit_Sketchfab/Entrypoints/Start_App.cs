@@ -12,18 +12,17 @@ using System.Threading.Tasks;
 namespace Revit_Sketchfab.Entrypoints
 {
     [Transaction(TransactionMode.Manual)]
-    public class Start_ExportModel : IExternalCommand
+    public class Start_App : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             AppState.CurrentUIApplication = commandData.Application;
 
-            // Initializing all windows
             Window_Login windowLogin = new Window_Login();
             Window_Menu windowMenu = new Window_Menu();
             Window_Export windowExport = new Window_Export();
-            Window_Library windowLibrary = new Window_Library();
             Window_Viewer windowViewer = new Window_Viewer();
+            Window_Library windowLibrary = new Window_Library();
 
             if (AppState.IsUserLoggedIn)
             {
@@ -46,7 +45,7 @@ namespace Revit_Sketchfab.Entrypoints
         public static string GetPath()
         {
             // Return constructed namespace path
-            return typeof(Start_ExportModel).FullName;
+            return typeof(Start_App).FullName;
         }
     }
 }

@@ -12,10 +12,8 @@ namespace Revit_Sketchfab_Core.lib.ViewModels.Base
     /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
-
         public BaseViewModel()
         {
-
         }
 
         /// <summary>
@@ -27,7 +25,7 @@ namespace Revit_Sketchfab_Core.lib.ViewModels.Base
         /// Call this method to raise <see cref="PropertyChanged"/> event
         /// </summary>
         /// <param name="name"></param>
-        public void OnPropertyChanged(string name)
+        protected void OnPropertyChanged(string name)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(name));
         }

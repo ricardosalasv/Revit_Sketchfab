@@ -24,27 +24,12 @@ namespace Revit_Sketchfab_UI.UI
     /// </summary>
     public partial class Window_Menu : Window
     {
-        private ExternalEvent extEvent;
-        private AppExternalEvent evHandler;
         public Window_Menu()
         {
             InitializeComponent();
-            evHandler = new AppExternalEvent();
-            extEvent = ExternalEvent.Create(evHandler);
-
-            DataContext = new MenuModelViewModel(extEvent);
-
             this.MouseDown += Window_MouseDown;
+
             AppState.InitializedWPFWindows.Add(this);
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            extEvent.Dispose();
-            extEvent = null;
-            evHandler = null;
-
-            base.OnClosed(e);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -62,6 +47,26 @@ namespace Revit_Sketchfab_UI.UI
         {
             AppState.IsUserLoggedIn = false;
             this.Close();
+        }
+
+        private void export_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Window_Export window_Export = AppState.GetWindow("Window_Export") as Window_Export;
+            window_Export.Activate();
+            window_Export.Show();
+        }
+
+        private void library_button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            AppState.InitializedWPFWindows.Remove(this);
+
+            base.OnClosed(e);
         }
     }
 }

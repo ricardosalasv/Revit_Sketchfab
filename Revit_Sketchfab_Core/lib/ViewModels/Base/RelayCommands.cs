@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Revit_Sketchfab_Core.lib.ViewModels.Base
 {
-    public class RouteCommands : ICommand
+    public class RelayCommands : ICommand
     {
         /// <summary>
         /// The action to execute
@@ -20,7 +20,7 @@ namespace Revit_Sketchfab_Core.lib.ViewModels.Base
         /// Default constructor
         /// </summary>
         /// <param name="parameter"></param>
-        public RouteCommands(Action action)
+        public RelayCommands(Action action)
         {
             mAction = action;
         }

@@ -151,6 +151,10 @@
   <ItemGroup>
     <Resource Include="Revit_Sketchfab_Resources\sketchfab-logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Revit_Sketchfab_Resources\icon_exportAll.png" />
+    <Resource Include="Revit_Sketchfab_Resources\icon_exportSelection.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
