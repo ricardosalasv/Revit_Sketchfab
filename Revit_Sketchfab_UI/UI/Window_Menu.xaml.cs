@@ -32,6 +32,13 @@ namespace Revit_Sketchfab_UI.UI
             AppState.InitializedWPFWindows.Add(this);
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            AppState.InitializedWPFWindows.Remove(this);
+
+            base.OnClosed(e);
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -60,13 +67,6 @@ namespace Revit_Sketchfab_UI.UI
         private void library_button_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            AppState.InitializedWPFWindows.Remove(this);
-
-            base.OnClosed(e);
         }
     }
 }

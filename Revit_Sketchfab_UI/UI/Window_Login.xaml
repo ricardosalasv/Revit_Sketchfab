@@ -110,10 +110,10 @@
 
                     <StackPanel Grid.Row="1">
                         <TextBlock Margin="0 23 0 0" Text="Email Address"/>
-                        <TextBox x:Name="emailTextBox" Text="ricardo.salas.cg@gmail.com"/>
+                        <TextBox x:Name="emailTextBox"/>
 
                         <TextBlock Margin="0 23 0 0" Text="Password"/>
-                        <PasswordBox x:Name="passwordBox" Password="Rasv21091095"/>
+                        <PasswordBox x:Name="passwordBox"/>
                     </StackPanel>
                 </Grid>
             </Grid>

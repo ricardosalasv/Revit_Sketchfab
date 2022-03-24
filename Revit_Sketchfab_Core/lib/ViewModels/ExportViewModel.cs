@@ -43,6 +43,19 @@ namespace Revit_Sketchfab_Core.lib.ViewModels
             else
             {
                 ExportModel command = new ExportModel(false, modelName);
+
+                // Binding functionality to command events
+                command.RaiseModelExportingEvent += (sender, e) =>
+                {
+                    AppState.GetWindow("Window_WarningModelExporting").Show();
+                };
+
+                command.RaiseModelExportedEvent += (sender, e) =>
+                {
+                    AppState.GetWindow("Window_WarningModelExporting").Hide();
+                    AppState.GetWindow("Window_WarningModelExported").Show();
+                };
+
                 AppState.CommandToExecute = command.Execute;
 
                 extEvent.Raise();
@@ -55,10 +68,24 @@ namespace Revit_Sketchfab_Core.lib.ViewModels
             if (modelName == "Model Name")
             {
                 TaskDialog.Show("Warning", "You need to specify a name for exporting the model.");
+                AppState.GetWindow("Window_Export").Focus();
             }
             else
             {
                 ExportModel command = new ExportModel(true, modelName);
+
+                // Binding functionality to command events
+                command.RaiseModelExportingEvent += (sender, e) =>
+                {
+                    AppState.GetWindow("Window_WarningModelExporting").Show();
+                };
+
+                command.RaiseModelExportedEvent += (sender, e) =>
+                {
+                    AppState.GetWindow("Window_WarningModelExporting").Hide();
+                    AppState.GetWindow("Window_WarningModelExported").Show();
+                };
+
                 AppState.CommandToExecute = command.Execute;
 
                 extEvent.Raise();

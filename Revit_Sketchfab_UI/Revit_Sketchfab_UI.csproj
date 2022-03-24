@@ -67,6 +67,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="UI\Window_WarningModelExported.xaml.cs">
+      <DependentUpon>Window_WarningModelExported.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Window_WarningModelExporting.xaml.cs">
+      <DependentUpon>Window_WarningModelExporting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Window_Export.xaml.cs">
       <DependentUpon>Window_Export.xaml</DependentUpon>
     </Compile>
@@ -108,6 +114,14 @@
     <Page Include="ResourceDictionaries\TextDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="UI\Window_WarningModelExported.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Window_WarningModelExporting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Window_Export.xaml">
       <SubType>Designer</SubType>

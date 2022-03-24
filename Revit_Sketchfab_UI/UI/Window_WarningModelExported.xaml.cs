@@ -22,11 +22,11 @@ namespace Revit_Sketchfab_UI.UI
     /// <summary>
     /// Interaction logic for Window_Export.xaml
     /// </summary>
-    public partial class Window_Export : Window
+    public partial class Window_WarningModelExported : Window
     {
         private ExternalEvent extEvent;
         private AppExternalEvent evHandler;
-        public Window_Export()
+        public Window_WarningModelExported()
         {
             InitializeComponent();
             evHandler = new AppExternalEvent();
@@ -45,6 +45,8 @@ namespace Revit_Sketchfab_UI.UI
             extEvent = null;
             evHandler = null;
 
+            AppState.InitializedWPFWindows.Remove(this);
+
             base.OnClosed(e);
         }
 
@@ -60,7 +62,7 @@ namespace Revit_Sketchfab_UI.UI
             this.Close();
         }
 
-        private void exit_button_Click(object sender, RoutedEventArgs e)
+        private void OK_button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

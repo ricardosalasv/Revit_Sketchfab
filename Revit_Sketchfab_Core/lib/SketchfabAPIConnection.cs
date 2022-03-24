@@ -63,7 +63,6 @@ namespace Revit_Sketchfab_Core.lib
                 string message = ex.Message;
             }
 
-
             return null;
         }
 

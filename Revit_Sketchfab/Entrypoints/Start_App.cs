@@ -23,6 +23,8 @@ namespace Revit_Sketchfab.Entrypoints
             Window_Export windowExport = new Window_Export();
             Window_Viewer windowViewer = new Window_Viewer();
             Window_Library windowLibrary = new Window_Library();
+            Window_WarningModelExporting windowWarningModelExporting = new Window_WarningModelExporting();
+            Window_WarningModelExported windowWarningModelExported = new Window_WarningModelExported();
 
             if (AppState.IsUserLoggedIn)
             {

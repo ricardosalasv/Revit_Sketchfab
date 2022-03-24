@@ -22,11 +22,11 @@ namespace Revit_Sketchfab_UI.UI
     /// <summary>
     /// Interaction logic for Window_Export.xaml
     /// </summary>
-    public partial class Window_Export : Window
+    public partial class Window_WarningModelExporting : Window
     {
         private ExternalEvent extEvent;
         private AppExternalEvent evHandler;
-        public Window_Export()
+        public Window_WarningModelExporting()
         {
             InitializeComponent();
             evHandler = new AppExternalEvent();
@@ -37,6 +37,13 @@ namespace Revit_Sketchfab_UI.UI
             this.MouseDown += Window_MouseDown;
 
             AppState.InitializedWPFWindows.Add(this);
+        }
+
+        public void Show(string textToShow)
+        {
+            text.Text = textToShow;
+
+            base.Show();
         }
 
         protected override void OnClosed(EventArgs e)

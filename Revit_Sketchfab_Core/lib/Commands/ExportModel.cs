@@ -15,6 +15,9 @@ namespace Revit_Sketchfab_Core.lib.Commands
 {
     public class ExportModel
     {
+        public event EventHandler<string> RaiseModelExportingEvent;
+        public event EventHandler<string> RaiseModelExportedEvent;
+
         private bool exportSel = false;
         private string modelName { get; set; }
         public ExportModel(bool exportSelected, string ModelName)
@@ -49,10 +52,22 @@ namespace Revit_Sketchfab_Core.lib.Commands
             // Setting base adjustments to the view for export
             view.AreAnnotationCategoriesHidden = true;
 
-            foreach (ElementId id in GetCategoriesToHide())
+            try
             {
-                view.SetCategoryHidden(id, true);
+                // Unassigning View Template in case it is assigned
+                Parameter viewTemplateParam = view.GetParameters("View Template")[0];
+                viewTemplateParam.Set(ElementId.InvalidElementId);
+
+                foreach (ElementId id in GetCategoriesToHide())
+                {
+                    view.SetCategoryHidden(id, true);
+                }
             }
+            catch (Exception ex)
+            {
+                TaskDialog.Show("Exception", ex.Message);
+            }
+            
 
             if (exportSel)
             {
@@ -76,8 +91,14 @@ namespace Revit_Sketchfab_Core.lib.Commands
             // Returns the active view to its original state
             tt.RollBack();
 
+            AppState.GetWindow("Window_Export").Hide();
+            RaiseModelExportingEvent?.Invoke(this, "The model is uploading, another window is going to be shown " +
+                "to notify when the model has been succesfully exported.");
+
             // Starts uploading the model to Sketchfab
             await AppState.client.UploadModel(zipfile, modelName);
+
+            RaiseModelExportedEvent?.Invoke(this, "The model has been exported succesfully.");
 
             return true;
         }
