@@ -33,20 +33,32 @@ namespace Revit_Sketchfab_Core.lib
         {
             // Creating an object that will be serialized, which contains relevant data for the Sketchfab API
             Sketchfab_Model modelObject = new Sketchfab_Model(modelName);
-
-            // Model data content
-            HttpContent content = new StringContent(JsonConvert.SerializeObject(modelObject));
+            object uploadOptions = new
+            {
+                shading = "lit",
+                orientation = new
+                {
+                    axis = new List<int>()
+                    {
+                        1, 0, 0
+                    },
+                    angle = 180
+                }
+            };
 
             try
             {
                 // Reading our model from disk and creating a stream to it in order to add it to the POST request
                 FileStream fileStream = new FileStream(modelFilePath, FileMode.Open, FileAccess.Read);
-                HttpContent streamContent = new StreamContent(fileStream);
-                var test2 = await streamContent.ReadAsStreamAsync();
 
                 var formData = new MultipartFormDataContent();
-                formData.Add(content, "data");
-                formData.Add(streamContent, "modelFile", modelName + ".zip");
+                formData.Add(new StringContent(modelObject.name), "name");
+                formData.Add(new StringContent(JsonConvert.SerializeObject(modelObject.isInspectable)), "isInspectable");
+                formData.Add(new StringContent(JsonConvert.SerializeObject(modelObject.tags)), "tags");
+                formData.Add(new StringContent(JsonConvert.SerializeObject(modelObject.isPublished)), "isPublished");
+                formData.Add(new StringContent(modelObject.description), "description");
+                formData.Add(new StreamContent(fileStream), "modelFile", modelName + ".zip");
+                formData.Add(new StringContent(JsonConvert.SerializeObject(uploadOptions)), "options");
 
                 string test = await formData.ReadAsStringAsync();
 

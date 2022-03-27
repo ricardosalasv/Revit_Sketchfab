@@ -29,7 +29,8 @@ namespace Revit_Sketchfab_Core.lib.APIObjects
             };
             categories = new List<string>()
             {
-                "Architecture"
+                "Architecture",
+                "Furniture & Home"
             };
             license = "by Ricardo Salas";
             isPublished = false;
