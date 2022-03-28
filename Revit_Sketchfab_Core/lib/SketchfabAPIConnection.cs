@@ -78,6 +78,18 @@ namespace Revit_Sketchfab_Core.lib
             return null;
         }
 
+        public async Task<IList<GetModel>> GetModelLibrary()
+        {
+            HttpResponseMessage response = await client.GetAsync(new Uri("https://api.sketchfab.com/v3/me/models", UriKind.Absolute));
+            string stringResponse = await response.Content.ReadAsStringAsync();
+
+            GetModelsResponse modelsListResponse = JsonConvert.DeserializeObject<GetModelsResponse>(stringResponse);
+
+            IList<GetModel> modelList = modelsListResponse.results;
+
+            return modelList;
+        }
+
         /// <summary>
         /// Authenticates the user by its username and password
         /// </summary>
@@ -110,8 +122,7 @@ namespace Revit_Sketchfab_Core.lib
 
     }
 
-
-    public class AuthResponse
+    internal class AuthResponse
     {
         public string access_token { get; set; }
         public int expires_in { get; set; }
@@ -120,4 +131,19 @@ namespace Revit_Sketchfab_Core.lib
         public string refresh_token { get; set; }
     }
 
+    internal class GetModelsResponse
+    {
+        public IList<GetModel> results { get; set; }
+    }
+
+    public class GetModel
+    {
+        public string uid { get; set; }
+        public string viewerUrl { get; set; }
+        public bool isProtected { get; set; }
+        public string publishedAt { get; set; }
+        public string name { get; set; }
+        public string uri { get; set; }
+        public string embedUrl { get; set; }
+    }
 }

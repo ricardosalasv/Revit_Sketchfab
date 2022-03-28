@@ -64,9 +64,12 @@ namespace Revit_Sketchfab_UI.UI
             window_Export.Show();
         }
 
-        private void library_button_Click(object sender, RoutedEventArgs e)
+        private async void library_button_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
 
+            Window_Library window_Library = AppState.GetWindow("Window_Library") as Window_Library;
+            await window_Library.ShowWithUpdatedList();
         }
     }
 }

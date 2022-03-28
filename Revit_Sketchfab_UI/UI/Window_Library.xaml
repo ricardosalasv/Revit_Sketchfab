@@ -9,7 +9,178 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="Window_Library" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../ResourceDictionaries/BaseDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/TextDictionary.xaml"/>
+                <ResourceDictionary Source="../ResourceDictionaries/TextBoxDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!-- Window drop shadow -->
+    <Window.Effect>
+        <DropShadowEffect 
+                        ShadowDepth="10"
+                        Opacity="0.5"
+                        BlurRadius="15"/>
+    </Window.Effect>
+
+    <Border Style="{StaticResource out_border}"
+            Margin="0 0 30 30">
+
+        <!-- Main Layout -->
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header clipping border -->
+            <Border 
+                Grid.Row="0"
+                CornerRadius="20 20 0 0"
+                x:Name="maskHeader"
+                />
+
+            <!-- Header drop shadow-->
+            <Border 
+                CornerRadius="20 20 0 0"
+                BorderBrush="Black"
+                BorderThickness="0"
+                Panel.ZIndex="1">
+
+                <Border.Effect>
+                    <DropShadowEffect 
+                        Direction="270"
+                        RenderingBias="Quality"
+                        ShadowDepth="5"
+                        Opacity="0.5"
+                        BlurRadius="15"/>
+                </Border.Effect>
+            </Border>
+
+            <!-- Header -->
+            <Grid
+                Grid.Row="0"
+                Background="#1caad9"
+                Panel.ZIndex="2"
+                >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=maskHeader}"/>
+                </Grid.OpacityMask>
+
+                <!-- Icon -->
+                <Image
+                    Source="../Revit_Sketchfab_Resources/sketchfab-logo.png"
+                    Grid.Column="0"
+                    Height="75"
+                    Width="75"/>
+
+                <!-- Title -->
+                <TextBlock Style="{StaticResource title_text}"
+                    Grid.Column="1"
+                    Text="LIBRARY"/>
+
+            </Grid>
+
+            <!-- Body -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        CanContentScroll="True">
+
+                        <ListBox
+                            x:Name="models_ListBox"
+                
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Background="#eeeeee"
+                            Foreground="Black"
+                    
+                            BorderThickness="0">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock 
+                                Grid.Column="0"
+                                
+                                Text="{Binding name}"
+                            />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+
+            <!-- Action Buttons clipping border-->
+            <Border 
+                Grid.Row="2"
+                CornerRadius="0 0 20 20"
+                x:Name="maskActionButtons"
+                />
+
+            <!-- Action Buttons -->
+            <Grid
+                Grid.Row="2">
+
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=maskActionButtons}"/>
+                </Grid.OpacityMask>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="exit_button"
+                    Grid.Column="0"
+                    Style="{StaticResource action_button}"
+                    Content="EXIT"
+                        
+                    Click="exit_button_Click"
+                    />
+
+                <Button x:Name="open_button"
+                    Grid.Column="1"
+                    Style="{StaticResource action_button}"
+                    Content="OPEN"
+                    
+                    Click="open_button_Click"
+                    />
+            </Grid>
+
+        </Grid>
+    </Border>
 </Window>

@@ -34,12 +34,12 @@ namespace Revit_Sketchfab
             app.CreateRibbonTab(tabName);
 
             // Create the export commands panel
-            RibbonPanel exportPanel = app.CreateRibbonPanel(tabName, "Export");
+            RibbonPanel exportPanel = app.CreateRibbonPanel(tabName, "Export/Library");
 
             // Populate button data model
             var exportModelButtonData = new RevitPushButtonDataModel()
             {
-                Label = "Export Models",
+                Label = "Start App",
                 Panel = exportPanel,
                 Tooltip = "This command opens the Sketchfab Integration interface.",
                 IconImageName = "icon_export.png",
